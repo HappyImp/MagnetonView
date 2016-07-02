@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <com.person.kyluzoi.magnetonview.view.RandomTextView
+    <com.person.kyluzoi.magnetonview.view.MagnetonView
+        android:id="@+id/test_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rd_textview"></com.person.kyluzoi.magnetonview.view.RandomTextView>
+        android:layout_height="match_parent"></com.person.kyluzoi.magnetonview.view.MagnetonView>
 
 </RelativeLayout>

@@ -44,7 +44,8 @@ public class CircleViewPoint {
 
     @Override
     public String toString() {
-        return "当前圆的X偏移量"+translateX+"/n当前圆的Y偏移量"+translateY+"/n当前圆半径应为"+circleR;
+//        return "当前圆的X偏移量"+translateX+"/n当前圆的Y偏移量"+translateY+"/n当前圆半径应为"+circleR;
+        return "("+translateX+","+translateY+")"+circleR;
     }
 }
 

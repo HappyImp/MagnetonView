@@ -1,18 +1,18 @@
 package com.person.kyluzoi.magnetonview;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.person.kyluzoi.magnetonview.view.RandomTextView;
+import com.person.kyluzoi.magnetonview.view.MagnetonView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.rd_textview)
-    RandomTextView rdTextview;
+
+    @Bind(R.id.test_view)
+    MagnetonView testView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        testView.addSubView();
+        testView.addSubView();
+        testView.addSubView();
+        testView.addSubView();
+        testView.addSubView();
     }
 }
