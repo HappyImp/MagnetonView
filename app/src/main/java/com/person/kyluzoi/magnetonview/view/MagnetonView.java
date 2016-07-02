@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.animation.AnimatorProxy;
+import com.person.kyluzoi.magnetonview.AnimationUtils;
 import com.person.kyluzoi.magnetonview.MathUtils;
 
 import java.util.ArrayList;
@@ -25,10 +26,12 @@ public class MagnetonView extends FrameLayout {
 
     int mCenterR = 20;
     int mCircleR = 10;
+    Random random = new Random();
+
 
 
     int mCenterX, mCenterY;
-    int mOutsideMAX = 200; //定义最高偏移半径
+    int mOutsideMAX = 400; //定义最高偏移半径
     ArrayList<TextView> mCircles = new ArrayList<>();
     ArrayList<CircleViewPoint> mCirclesDatas = new ArrayList<>();
     CircleViewPoint mCenterPoint = new CircleViewPoint(0, 0, mCircleR);
@@ -69,10 +72,10 @@ public class MagnetonView extends FrameLayout {
     public void locateAnimation(CircleViewPoint circleViewPoint, View view) {
         ObjectAnimator.ofFloat(view, "translationX", view.getX(), circleViewPoint.getTranslateX()).setDuration(1000).start();
         ObjectAnimator.ofFloat(view, "translationY", view.getY(), circleViewPoint.getTranslateY()).setDuration(1000).start();
-        floatAnimation();
+        floatAnimation(view);
     }
 
-    public void floatAnimation() {
+    public void floatAnimation(View view) {
         // TODO: 2016/7/2 当效果实现后，填充在原地的浮动动画或者震动动画
     }
 
@@ -105,7 +108,6 @@ public class MagnetonView extends FrameLayout {
     }
 
     private int randomSke() {
-        Random random = new Random();
         return random.nextInt(mOutsideMAX + 200) - 200;
     }
 
