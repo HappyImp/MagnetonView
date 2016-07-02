@@ -7,11 +7,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.view.ViewHelper;
-import com.nineoldandroids.view.animation.AnimatorProxy;
-import com.person.kyluzoi.magnetonview.AnimationUtils;
 import com.person.kyluzoi.magnetonview.MathUtils;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class MagnetonView extends FrameLayout {
 
 
     int mCenterX, mCenterY;
-    int mOutsideMAX = 400; //定义最高偏移半径
+    int mOutsideMAX = 300; //定义最高偏移半径
     ArrayList<TextView> mCircles = new ArrayList<>();
     ArrayList<CircleViewPoint> mCirclesDatas = new ArrayList<>();
     CircleViewPoint mCenterPoint = new CircleViewPoint(0, 0, mCircleR);
@@ -80,19 +78,27 @@ public class MagnetonView extends FrameLayout {
     }
 
     public void addSubView(/**View view**/) {
-        int _x = randomSke();
-        int _y = randomSke();
-        int i = 0;
-        CircleViewPoint circle = new CircleViewPoint(_x, _y, 50);
-        for (CircleViewPoint tempcir : mCirclesDatas) {
-            if (!MathUtils.measureDistance(circle, tempcir)) {
-                addSubView();
-                break;
+        try {
+
+            int _x = randomSke();
+            int _y = randomSke();
+            int i = 0;
+            CircleViewPoint circle = new CircleViewPoint(_x, _y, 50);
+            for (CircleViewPoint tempcir : mCirclesDatas) {
+                if (!MathUtils.measureDistance(circle, tempcir)) {
+                    addSubView();
+                    break;
+                }
+                i++;
             }
-            i++;
+            if (i == mCirclesDatas.size()) {
+                addObzData(circle);
+            }
         }
-        if (i == mCirclesDatas.size()) {
-            addObzData(circle);
+        catch (StackOverflowError e)
+        {
+//            Toast.makeText(getContext(), "出不来了", Toast.LENGTH_SHORT).show();
+            Log.d("MagnetonView", "出不来了");
         }
     }
 
@@ -108,7 +114,7 @@ public class MagnetonView extends FrameLayout {
     }
 
     private int randomSke() {
-        return random.nextInt(mOutsideMAX + 200) - 200;
+        return random.nextInt(mOutsideMAX + mOutsideMAX) - mOutsideMAX;
     }
 
 }
