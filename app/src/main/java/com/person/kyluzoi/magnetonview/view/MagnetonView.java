@@ -22,7 +22,7 @@ import java.util.Random;
  */
 public class MagnetonView extends FrameLayout {
 
-    int mCenterR = 20;
+    int mCenterR = 30;
     int mCircleR = 10;
     Random random = new Random();
 
@@ -77,7 +77,7 @@ public class MagnetonView extends FrameLayout {
             int _x = randomSke();
             int _y = randomSke();
             int i = 0;
-            CircleViewPoint circle = new CircleViewPoint(_x, _y, 50);
+            CircleViewPoint circle = new CircleViewPoint(_x, _y, mCircleR);
             for (CircleViewPoint tempcir : mCirclesDatas) {
                 if (!MathUtils.measureDistance(circle, tempcir)) {
                     addSubView();
@@ -94,6 +94,7 @@ public class MagnetonView extends FrameLayout {
 
             // TODO: 2016/7/2 这里可以做减小半径的操作 然后递归  
 //            Toast.makeText(getContext(), "出不来了", Toast.LENGTH_SHORT).show();
+            mCircleR=mCircleR-2;
             Log.d("MagnetonView", "出不来了");
         }
     }
