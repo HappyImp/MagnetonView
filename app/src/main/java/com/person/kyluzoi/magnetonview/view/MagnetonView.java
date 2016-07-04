@@ -32,7 +32,7 @@ public class MagnetonView extends FrameLayout {
     int mOutsideMAX = 300; //定义最高偏移半径
     ArrayList<TextView> mCircles = new ArrayList<>();
     ArrayList<CircleViewPoint> mCirclesDatas = new ArrayList<>();
-    CircleViewPoint mCenterPoint = new CircleViewPoint(0, 0, mCircleR);
+    CircleViewPoint mCenterPoint = new CircleViewPoint(0, 0, mCenterR);
 
 
     public MagnetonView(Context context) {
@@ -52,12 +52,6 @@ public class MagnetonView extends FrameLayout {
 
     private void initSetViews(AttributeSet attrs) {
         addObzData(mCenterPoint);
-//        CircleViewPoint cir111=new CircleViewPoint(20,200,10);
-//        CircleViewPoint cir11=new CircleViewPoint(5,-50,10);
-//        CircleViewPoint cir1=new CircleViewPoint(7,60,10);
-//        addObzData(cir1);
-//        addObzData(cir11);
-//        addObzData(cir111);
     }
 
 
@@ -97,6 +91,8 @@ public class MagnetonView extends FrameLayout {
         }
         catch (StackOverflowError e)
         {
+
+            // TODO: 2016/7/2 这里可以做减小半径的操作 然后递归  
 //            Toast.makeText(getContext(), "出不来了", Toast.LENGTH_SHORT).show();
             Log.d("MagnetonView", "出不来了");
         }
@@ -104,8 +100,8 @@ public class MagnetonView extends FrameLayout {
 
     public void addObzData(CircleViewPoint circle) {
         mCirclesDatas.add(circle);
-        TextView view = new TextView(getContext());
-        LayoutParams lytp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER);
+        MagneText view = new MagneText(getContext());
+        LayoutParams lytp = new LayoutParams(circle.getCircleR()*2, circle.getCircleR()*2, Gravity.CENTER);
         view.setText(circle.toString());
         view.setGravity(Gravity.CENTER);
         view.setTextSize(10);
